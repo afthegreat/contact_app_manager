@@ -66,7 +66,7 @@ else {
 
 //@access private
 const currentUser=asyncHandler( async (req,res) =>{
-    res.json({message: "login the user"})
+    res.json(req.user)
 
 })
 
