@@ -9,6 +9,7 @@ const port=process.env.PORT ||5000
 connectDb()
 app.use(express.json())
 app.use("/api/contacts",require("./routes/conatactRoutes"))
+app.use("/api/users",require("./routes/userRoutes"))
 app.use(erroHandler)
 app.listen(port, () =>{
     console.log(`server running on port: ${port}`)
