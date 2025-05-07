@@ -27,7 +27,7 @@ const registerUser = asyncHandler(async (req, res) => {
       email,
       password: hashedPassword
     });
-  
+  console.log("it is running")
     if (user) {
       res.status(201).json({ _id: user.id, email: user.email });
     } else {
@@ -51,10 +51,10 @@ if(user && (await bcrypt.compare(password, user.password))){
     user:{
       username:user.username,
       email:user.email,
-      id:user.id
+      id:user._id
     }
   },
-process.env.JWT_SECRET, {expiresIn:"1m"})
+process.env.JWT_SECRET, {expiresIn:"10m"})
   res.status(200).json({accesToken})
 }
 else {
@@ -69,6 +69,7 @@ const currentUser=asyncHandler( async (req,res) =>{
     res.json(req.user)
 
 })
+
 
 
 module.exports={registerUser, loginUser,currentUser}
