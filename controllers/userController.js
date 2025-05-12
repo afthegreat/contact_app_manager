@@ -29,7 +29,16 @@ const registerUser = asyncHandler(async (req, res) => {
     });
   console.log("it is running")
     if (user) {
-      res.status(201).json({ _id: user.id, email: user.email });
+      const accesToken= jwt.sign({
+    user:{
+      username:user.username,
+      email:user.email,
+      id:user._id
+    }
+  },
+process.env.JWT_SECRET, {expiresIn:"10m"})
+  res.status(200).json({accesToken})
+      //res.status(201).json({ _id: user.id, email: user.email });
     } else {
       res.status(400);
       throw new Error("User data is not valid");
